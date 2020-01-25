@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>RelationUtils</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>toolbox.builder.TLAParserBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>toolbox.natures.TLANature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>FiniteSets.tla</name>
+			<type>1</type>
+			<location>/usr/local/lib/tlaps/FiniteSets.tla</location>
+		</link>
+		<link>
+			<name>FunctionUtils.tla</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/FunctionUtils.tla</locationURI>
+		</link>
+		<link>
+			<name>MathUtils.tla</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/MathUtils.tla</locationURI>
+		</link>
+		<link>
+			<name>RelationUtils.tla</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/RelationUtils.tla</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>

@@ -3,7 +3,6 @@
 Relation related operators.
 *)
 LOCAL INSTANCE Naturals
-LOCAL INSTANCE FiniteSets
 LOCAL INSTANCE Sequences
 LOCAL INSTANCE SequencesExt
 LOCAL INSTANCE Functions
@@ -122,7 +121,7 @@ AllLinearExtensions(R, S) == \* return all possible linear extensions of R on th
     IN  LinearExtensionsUtil(R, S)
 
 LinearExtensions(R, S) == \* return the set of all possible linear extensions of R on the set S
-    {l \in TupleOf(S, Cardinality(S)) : Respect(Seq2Rel(l), R)} \* FIXME: Seq(s) is not enumerable
+    {l \in TupleOf(S, Len(S)) : Respect(Seq2Rel(l), R)} \* FIXME: Seq(s) is not enumerable
 -------------------------------------------------
 (*
 Test cases
@@ -139,12 +138,7 @@ rel2 == \* from https://www.geeksforgeeks.org/topological-sorting/
 set3 == 1 .. 6
 rel3 == \* from https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort
     {<<1, 2>>, <<1, 4>>, <<2, 3>>, <<4, 2>>, <<4, 5>>, <<4, 6>>, <<5, 6>>}
--------------------------------------------------
-THEOREM LE ==
-    /\ AllLinearExtensions(rel1, set1) = LinearExtensions(rel1, set1)
-    /\ AllLinearExtensions(rel2, set2) = LinearExtensions(rel2, set2)
-    /\ AllLinearExtensions(rel3, set3) = LinearExtensions(rel3, set3)
 =============================================================================
-\* Modification History
-\* Last modified Tue Apr 06 20:29:54 CST 2021 by hengxin
+\* Modification Historjjy
+\* Last modified Tue Apr 06 15:09:55 CST 2021 by hengxin
 \* Created Tue Sep 18 19:16:04 CST 2018 by hengxin

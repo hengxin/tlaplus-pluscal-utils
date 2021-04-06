@@ -139,12 +139,7 @@ rel2 == \* from https://www.geeksforgeeks.org/topological-sorting/
 set3 == 1 .. 6
 rel3 == \* from https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort
     {<<1, 2>>, <<1, 4>>, <<2, 3>>, <<4, 2>>, <<4, 5>>, <<4, 6>>, <<5, 6>>}
--------------------------------------------------
-THEOREM LE ==
-    /\ AllLinearExtensions(rel1, set1) = LinearExtensions(rel1, set1)
-    /\ AllLinearExtensions(rel2, set2) = LinearExtensions(rel2, set2)
-    /\ AllLinearExtensions(rel3, set3) = LinearExtensions(rel3, set3)
 =============================================================================
-\* Modification History
-\* Last modified Tue Apr 06 20:29:54 CST 2021 by hengxin
+\* Modification Historjjy
+\* Last modified Tue Apr 06 15:09:55 CST 2021 by hengxin
 \* Created Tue Sep 18 19:16:04 CST 2018 by hengxin

@@ -2,14 +2,14 @@
 EXTENDS RelationUtils, TLC
 
 \* Constant expression definition @modelExpressionEval
-const_expr_157993540045670000 == 
-SeqToRel(<<>>)
+const_expr_16177117867299000 == 
+AllLinearExtensions(rel1, set1) = LinearExtensions(rel1, set1)
 ----
 
 \* Constant expression ASSUME statement @modelExpressionEval
-ASSUME PrintT(<<"$!@$!@$!@$!@$!",const_expr_157993540045670000>>)
+ASSUME PrintT(<<"$!@$!@$!@$!@$!",const_expr_16177117867299000>>)
 ----
 
 =============================================================================
 \* Modification History
-\* Created Sat Jan 25 14:56:40 CST 2020 by hengxin
+\* Created Tue Apr 06 20:23:06 CST 2021 by hengxin

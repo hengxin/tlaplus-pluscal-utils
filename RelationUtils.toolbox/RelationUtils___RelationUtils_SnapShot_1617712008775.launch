@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.lamport.tla.toolbox.tool.tlc.modelCheck">
-    <stringAttribute key="configurationName" value="RelationUtils_SnapShot_1579935396523"/>
+    <stringAttribute key="configurationName" value="RelationUtils_SnapShot_1617712008775"/>
     <intAttribute key="distributedFPSetCount" value="0"/>
-    <stringAttribute key="distributedNetworkInterface" value="114.212.82.52"/>
+    <stringAttribute key="distributedNetworkInterface" value="192.168.3.7"/>
     <intAttribute key="distributedNodesCount" value="1"/>
     <stringAttribute key="distributedTLC" value="off"/>
-    <intAttribute key="fpIndex" value="37"/>
+    <intAttribute key="fpIndex" value="1"/>
     <intAttribute key="maxHeapSize" value="25"/>
     <stringAttribute key="modelBehaviorInit" value=""/>
     <stringAttribute key="modelBehaviorNext" value=""/>
@@ -16,8 +16,10 @@
     <booleanAttribute key="modelCorrectnessCheckDeadlock" value="true"/>
     <listAttribute key="modelCorrectnessInvariants"/>
     <listAttribute key="modelCorrectnessProperties"/>
-    <stringAttribute key="modelExpressionEval" value="SeqToRel(&lt;&lt;1&gt;&gt;)"/>
+    <intAttribute key="modelEditorOpenTabs" value="8"/>
+    <stringAttribute key="modelExpressionEval" value="AllLinearExtensions(rel1, set1) = LinearExtensions(rel1, set1)"/>
     <listAttribute key="modelParameterConstants"/>
+    <intAttribute key="modelVersion" value="20191005"/>
     <intAttribute key="numberOfWorkers" value="6"/>
     <stringAttribute key="result.mail.address" value=""/>
     <stringAttribute key="specName" value="RelationUtils"/>

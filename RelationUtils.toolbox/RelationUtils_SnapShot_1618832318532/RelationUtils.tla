@@ -52,7 +52,7 @@ TC(R) == \* Transitive closure of R
 Example: SeqToRel(<<1, 2, 3>>) = {<<1, 2>>, <<1, 3>>, <<2, 3>>}
 *)
 RECURSIVE Seq2Rel(_)
-Seq2Rel(s) == \* Transform a (total order) sequence s to a relation
+Seq2Rel(s) == \* Transform a sequence s into a strict total order relation
     IF s = <<>> THEN {}
     ELSE LET h == Head(s)
              t == Tail(s)
@@ -84,7 +84,6 @@ IsTotalOrder(R, S) ==
 
 IsStrictPartialOrder(R, S) ==
     /\ IsIrreflexive(R, S)
-    /\ IsAntisymmetric(R, S)
     /\ IsTransitive(R, S)
     
 IsStrictTotalOrder(R, S) ==
@@ -101,13 +100,23 @@ Minimal(R, S) == \* the set of minimal elements in relation R on the set S
 Maximal(R, S) == \* the set of maximal elements in relation R on the set S
     {m \in S : ~\E b \in Ran(R): <<m, b>> \in R}
 -------------------------------------------------
+Cyclic(R) == \* Is R cyclic?
+    LET RECURSIVE CyclicUtil(_, _)
+        CyclicUtil(rel, set) == \* remaining relation; set: remaining set
+            IF set = {} THEN FALSE
+            ELSE LET mins == Minimal(rel, set)
+                 IN  IF mins = {} THEN TRUE
+                     ELSE LET m == CHOOSE x \in mins : TRUE
+                          IN  CyclicUtil(rel \ LeftRestriction(R, m), set \ {m})
+    IN  CyclicUtil(R, Support(R))                    
+-------------------------------------------------
 AnyLinearExtension(R, S) == \* return an arbitrary linear extension of R on the set S
     LET RECURSIVE LinearExtensionUtil(_, _)
         LinearExtensionUtil(rel, set) == \* rel: remaining relation; set: remaining set
             IF set = {} THEN <<>>
             ELSE LET m == CHOOSE x \in Minimal(rel, set) : TRUE
                  IN  <<m>> \o LinearExtensionUtil(rel \ LeftRestriction(R, m), set \ {m})
-    IN LinearExtensionUtil(R, S)
+    IN  LinearExtensionUtil(R, S)
 
 (*
 See https://groups.google.com/g/tlaplus/c/mtyEmqhlRVg
@@ -117,16 +126,18 @@ AllLinearExtensions(R, S) == \* return all possible linear extensions of R on th
         LinearExtensionsUtil(rel, set) ==
             IF set = {} THEN {<<>>}
             ELSE LET Extend(m) == {<<m>> \o l : \* extend recursively by the minimal element m
-                        l \in LinearExtensionsUtil(rel \LeftRestriction(R, m), set \ {m})}
+                        l \in LinearExtensionsUtil(rel \ LeftRestriction(R, m), set \ {m})}
                  IN  UNION {Extend(m) : m \in Minimal(rel, set)} \* for each minimal element
     IN  LinearExtensionsUtil(R, S)
 
 LinearExtensions(R, S) == \* return the set of all possible linear extensions of R on the set S
-    {l \in TupleOf(S, Cardinality(S)) : Respect(Seq2Rel(l), R)} \* FIXME: Seq(s) is not enumerable
+    {l \in TupleOf(S, Cardinality(S)) : Respect(Seq2Rel(l), R)}
 -------------------------------------------------
 (*
 Test cases
 *)
+rel0 == {}
+
 set1 == {2, 3, 5, 7, 8, 9, 10, 11}
 rel1 == \* from https://en.wikipedia.org/wiki/Topological_sorting
     {<<3, 8>>, <<3, 10>>, <<5, 11>>, <<7, 8>>, <<7, 11>>,
@@ -139,7 +150,27 @@ rel2 == \* from https://www.geeksforgeeks.org/topological-sorting/
 set3 == 1 .. 6
 rel3 == \* from https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort
     {<<1, 2>>, <<1, 4>>, <<2, 3>>, <<4, 2>>, <<4, 5>>, <<4, 6>>, <<5, 6>>}
+
+rel4 == {<<1, 1>>}
+
+rel5 == {<<1, 2>>, <<2, 1>>}
+
+rel6 == {<<1, 2>>, <<2, 3>>, <<3, 4>>, <<4, 1>>}
+
+rel7 == {<<1, 2>>, <<2, 3>>, <<3, 4>>}
+
+all == {rel0, rel1, rel2, rel3, rel4, rel5, rel6, rel7}
+-------------------------------------------------
+THEOREM LETest == \* test of linear extensions
+    /\ AllLinearExtensions(rel1, set1) = LinearExtensions(rel1, set1)
+    /\ AllLinearExtensions(rel2, set2) = LinearExtensions(rel2, set2)
+    /\ AllLinearExtensions(rel3, set3) = LinearExtensions(rel3, set3)
+-------------------------------------------------
+THEOREM CyclicTest == \* test of Cyclic(R)
+    LET cyclic == {rel4, rel5, rel6}
+    IN  /\ \A c \in cyclic: Cyclic(c)
+        /\ \A c \in all \ cyclic: ~Cyclic(c)
 =============================================================================
-\* Modification Historjjy
-\* Last modified Tue Apr 06 15:09:55 CST 2021 by hengxin
+\* Modification History
+\* Last modified Mon Apr 19 19:38:33 CST 2021 by hengxin
 \* Created Tue Sep 18 19:16:04 CST 2018 by hengxin

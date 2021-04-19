@@ -2,14 +2,14 @@
 EXTENDS RelationUtils, TLC
 
 \* Constant expression definition @modelExpressionEval
-const_expr_161771221023510000 == 
-LE
+const_expr_161883232577922000 == 
+CyclicTest
 ----
 
 \* Constant expression ASSUME statement @modelExpressionEval
-ASSUME PrintT(<<"$!@$!@$!@$!@$!",const_expr_161771221023510000>>)
+ASSUME PrintT(<<"$!@$!@$!@$!@$!",const_expr_161883232577922000>>)
 ----
 
 =============================================================================
 \* Modification History
-\* Created Tue Apr 06 20:30:10 CST 2021 by hengxin
+\* Created Mon Apr 19 19:38:45 CST 2021 by hengxin

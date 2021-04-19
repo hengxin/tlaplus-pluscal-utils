@@ -5,7 +5,7 @@
     <stringAttribute key="distributedNetworkInterface" value="192.168.3.7"/>
     <intAttribute key="distributedNodesCount" value="1"/>
     <stringAttribute key="distributedTLC" value="off"/>
-    <intAttribute key="fpIndex" value="7"/>
+    <intAttribute key="fpIndex" value="113"/>
     <intAttribute key="maxHeapSize" value="25"/>
     <stringAttribute key="modelBehaviorInit" value=""/>
     <stringAttribute key="modelBehaviorNext" value=""/>
@@ -17,7 +17,7 @@
     <listAttribute key="modelCorrectnessInvariants"/>
     <listAttribute key="modelCorrectnessProperties"/>
     <intAttribute key="modelEditorOpenTabs" value="8"/>
-    <stringAttribute key="modelExpressionEval" value="LE"/>
+    <stringAttribute key="modelExpressionEval" value="CyclicTest"/>
     <listAttribute key="modelParameterConstants"/>
     <intAttribute key="modelVersion" value="20191005"/>
     <intAttribute key="numberOfWorkers" value="6"/>

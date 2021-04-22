@@ -18,7 +18,7 @@
 		<link>
 			<name>FiniteSetsExt.tla</name>
 			<type>1</type>
-			<location>/home/hengxin/Documents/git-projects/tlaplus/tlaplus-pluscal-utils/FiniteSetsExt.tla</location>
+			<locationURI>PARENT-1-PROJECT_LOC/FiniteSetsExt.tla</locationURI>
 		</link>
 		<link>
 			<name>FunctionUtils.tla</name>
@@ -28,7 +28,7 @@
 		<link>
 			<name>Functions.tla</name>
 			<type>1</type>
-			<location>/home/hengxin/Documents/git-projects/tlaplus/tlaplus-pluscal-utils/Functions.tla</location>
+			<locationURI>PARENT-1-PROJECT_LOC/Functions.tla</locationURI>
 		</link>
 		<link>
 			<name>MathUtils.tla</name>
@@ -43,7 +43,7 @@
 		<link>
 			<name>SequencesExt.tla</name>
 			<type>1</type>
-			<location>/home/hengxin/Documents/git-projects/tlaplus/tlaplus-pluscal-utils/SequencesExt.tla</location>
+			<locationURI>PARENT-1-PROJECT_LOC/SequencesExt.tla</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

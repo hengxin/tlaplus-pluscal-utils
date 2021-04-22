@@ -70,35 +70,28 @@ IsAntisymmetric(R, S) == \A a, b \in S: <<a, b>> \in R \land <<b, a>> \in R => a
 IsTransitive(R, S) ==
     \forall a, b, c \in S: (<<a, b>> \in R /\ <<b, c>> \in R) => <<a, c>> \in R
 
-\* https://en.wikipedia.org/wiki/Connected_relation
 IsTotal(R, S) ==
     \forall a, b \in S: <<a, b>> \in R \/ <<b, a>> \in R
 
-\* https://en.wikipedia.org/wiki/Connected_relation
 IsSemiconnex(R, S) ==
     \forall a, b \in S: a # b => (<<a, b>> \in R \lor <<b, a>> \in R)
 
-\* partial order: https://en.wikipedia.org/wiki/Partially_ordered_set#Formal_definition
 IsPartialOrder(R, S) ==
     /\ IsReflexive(R, S)
     /\ IsAntisymmetric(R, S)
     /\ IsTransitive(R, S)
 
-\* total order: https://en.wikipedia.org/wiki/Total_order
 IsTotalOrder(R, S) ==
     /\ IsPartialOrder(R, S)
-    /\ IsTotal(R, S) \* Atually, IsTotal(R, S) => IsReflexive(R, S)
+    /\ IsTotal(R, S)
 
-\* strict partial order: https://en.wikipedia.org/wiki/Partially_ordered_set#Strict_and_non-strict_partial_orders
 IsStrictPartialOrder(R, S) ==
     /\ IsIrreflexive(R, S)
     /\ IsTransitive(R, S)
-
-\* strict total order: https://en.wikipedia.org/wiki/Total_order#Strict_total_order
+    
 IsStrictTotalOrder(R, S) ==
-    /\ IsIrreflexive(R, S)
-    /\ IsTransitive(R, S)
-    /\ IsSemiconnex(R, S)
+    /\ IsStrictPartialOrder(R, S)
+    /\ IsTotal(R, S)
 
 Respect(R, T) == T \subseteq R \* Does R respect T?
 -------------------------------------------------
@@ -175,20 +168,13 @@ set3 == 1 .. 6
 rel3 == \* from https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort
     {<<1, 2>>, <<1, 4>>, <<2, 3>>, <<4, 2>>, <<4, 5>>, <<4, 6>>, <<5, 6>>}
 
-set4 == {1}
 rel4 == {<<1, 1>>}
 
-set5 == {1, 2}
 rel5 == {<<1, 2>>, <<2, 1>>}
 
-set6 == 1 .. 4
 rel6 == {<<1, 2>>, <<2, 3>>, <<3, 4>>, <<4, 1>>}
 
-set7 == 1 .. 4
 rel7 == {<<1, 2>>, <<2, 3>>, <<3, 4>>}
-
-set8 == 1 .. 3
-rel8 == {<<1, 2>>, <<1, 3>>, <<2, 3>>}
 
 all == {rel0, rel1, rel2, rel3, rel4, rel5, rel6, rel7}
 -------------------------------------------------
@@ -203,11 +189,10 @@ CyclicTest == \* test of Cyclic(R)
         /\ \A c \in all \ cyclic: ~Cyclic(c)
 -------------------------------------------------
 IsStrictTotalOrderTest ==
-    /\ ~IsStrictTotalOrder(rel7, set7)
-    /\ IsStrictTotalOrder(rel8, set8)
+    IsStrictTotalOrder(rel7, {1, 2, 3})
 -------------------------------------------------
 VARIABLES x
 =============================================================================
 \* Modification History
-\* Last modified Thu Apr 22 14:56:23 CST 2021 by hengxin
+\* Last modified Thu Apr 22 14:43:34 CST 2021 by hengxin
 \* Created Tue Sep 18 19:16:04 CST 2018 by hengxin
